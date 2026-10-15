@@ -35,7 +35,7 @@ class HashTable:
                 chain[i] = (key, value)
                 return
 
-                # Resize before adding if the load factor would be exceeded
+        # Resize before adding if the load factor would be exceeded
         if (self.num_items + 1) / self.slots > self.MAX_LOAD_FACTOR:
             self._resize()
             index = self._hash(key)
