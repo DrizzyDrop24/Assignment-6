@@ -35,7 +35,7 @@ class HashTable:
                 chain[i] = (key, value)
                 return
 
-                # Resize before adding if the load factor would be exceeded
+        # Resize before adding if the load factor would be exceeded
         if (self.num_items + 1) / self.slots > self.MAX_LOAD_FACTOR:
             self._resize()
             index = self._hash(key)
@@ -47,6 +47,13 @@ class HashTable:
     # return the value associated with the key
     def get(self, key):
         index = self._hash(key)
+        chain = self.backing_store[index]
+
+        for existing_key, value in chain:
+            if existing_key == key:
+                return value
+
+        return None
 
     # eliminate the key-value pair associated with key
     def remove(self, key):
